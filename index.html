@@ -1,46 +1,769 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>My Personal Webpage</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 40px;
-      background-color: #f0f0f0;
-    }
-    header {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-    h1 {
-      color: #333;
-    }
-    section {
-      background: white;
-      padding: 20px;
-      border-radius: 8px;
-      max-width: 600px;
-      margin: auto;
-    }
-    a {
-      color: #0066cc;
-      text-decoration: none;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thrice - IT Solutions & Services</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>tailwind.config={theme:{extend:{colors:{primary:'#4B6BFB',secondary:'#1A1B3B'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+    <style>
+        :where([class^="ri-"])::before { content: "\f3c2"; }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #4B6BFB 0%, #2B3BFB 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-gradient {
+            background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0.9) 50%, rgba(255,255,255,0) 100%);
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(75, 107, 251, 0.1);
+        }
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #4B6BFB;
+        }
+        .custom-checkbox {
+            position: relative;
+            padding-left: 28px;
+            cursor: pointer;
+            user-select: none;
+        }
+        .custom-checkbox input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+        .checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 20px;
+            width: 20px;
+            background-color: #fff;
+            border: 2px solid #e5e7eb;
+            border-radius: 4px;
+        }
+        .custom-checkbox:hover input ~ .checkmark {
+            border-color: #4B6BFB;
+        }
+        .custom-checkbox input:checked ~ .checkmark {
+            background-color: #4B6BFB;
+            border-color: #4B6BFB;
+        }
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+        .custom-checkbox input:checked ~ .checkmark:after {
+            display: block;
+        }
+        .custom-checkbox .checkmark:after {
+            left: 6px;
+            top: 2px;
+            width: 5px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+    </style>
 </head>
-<body>
+<body class="bg-white">
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 bg-white shadow-sm z-50">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <div class="mr-2">
+                        <svg width="40" height="40" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M150 100L300 250L150 400C150 400 250 300 350 200L250 100H150Z" fill="url(#paint0_linear)"/>
+                            <defs>
+                                <linearGradient id="paint0_linear" x1="150" y1="100" x2="350" y2="400" gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#4B6BFB"/>
+                                    <stop offset="1" stop-color="#00B2FF"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <img src="ThriceLogo.png" alt="Company Logo" width="75" height="auto">
 
-  <header>
-    <h1>Hello, I'm Shubham!</h1>
-    <p>Welcome to my personal website.</p>
-  </header>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#services" class="text-gray-700 hover:text-primary font-medium transition-colors">Services</a>
+                    <a href="#about" class="text-gray-700 hover:text-primary font-medium transition-colors">About</a>
+                    <a href="#portfolio" class="text-gray-700 hover:text-primary font-medium transition-colors">Portfolio</a>
+                    <a href="#careers" class="text-gray-700 hover:text-primary font-medium transition-colors">Careers</a>
+                    <a href="#contact" class="text-gray-700 hover:text-primary font-medium transition-colors">Contact</a>
+                    <button class="bg-primary text-white px-6 py-2 !rounded-button whitespace-nowrap font-medium hover:bg-opacity-90 transition-colors">Get Started</button>
+                </div>
+                
+                <div class="md:hidden flex items-center">
+                    <button class="text-gray-700 w-10 h-10 flex items-center justify-center">
+                        <i class="ri-menu-line ri-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
 
-  <section>
-    <h2>About Me</h2>
-    <p>I'm learning web development and building projects with HTML, CSS, and JavaScript.</p>
+    <!-- Hero Section -->
+    <section class="pt-24 relative overflow-hidden">
+        <div style="background-image: url('https://readdy.ai/api/search-image?query=modern%20technology%20concept%20with%20abstract%20digital%20elements%2C%20blue%20gradient%20technology%20background%20with%20circuit%20patterns%20and%20glowing%20connections%2C%20futuristic%20tech%20visualization%20with%20clean%20design%2C%20perfect%20for%20IT%20company%20hero%20section&width=1600&height=800&seq=hero123&orientation=landscape');" class="absolute inset-0 bg-cover bg-center bg-no-repeat object-top"></div>
+        <div class="hero-gradient absolute inset-0"></div>
+        <div class="container mx-auto px-6 py-20 relative">
+            <div class="flex flex-col md:flex-row items-center w-full">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
+                        Innovative IT Solutions for the <span class="gradient-text">Digital Age</span>
+                    </h1>
+                    <p class="text-lg text-gray-700 mb-8 max-w-lg">
+                        We transform businesses through cutting-edge technology solutions, helping you stay ahead in the rapidly evolving digital landscape.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <button class="bg-primary text-white px-8 py-3 !rounded-button whitespace-nowrap font-medium hover:bg-opacity-90 transition-colors">
+                            Explore Services
+                        </button>
+                        <button class="border-2 border-primary text-primary px-8 py-3 !rounded-button whitespace-nowrap font-medium hover:bg-primary hover:text-white transition-colors">
+                            Schedule Consultation
+                        </button>
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <!-- Hero content is displayed as background image -->
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <h2>Contact</h2>
-    <p>Email: <a href="mailto:shubham@example.com">shubham@example.com</a></p>
-    <p>GitHub: <a href="https://github.com/
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Services</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    We offer comprehensive IT solutions tailored to meet the unique needs of your business, helping you achieve sustainable growth and digital transformation.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="bg-white p-8 rounded-lg shadow-sm border border-gray-100 service-card transition-all duration-300">
+                    <div class="w-14 h-14 bg-blue-50 rounded-lg flex items-center justify-center mb-6">
+                        <i class="ri-code-s-slash-line ri-xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Custom Software Development</h3>
+                    <p class="text-gray-600 mb-4">
+                        Tailored software solutions designed to address your specific business challenges and streamline operations.
+                    </p>
+                    <a href="#" class="text-primary font-medium flex items-center">
+                        Learn More
+                        <i class="ri-arrow-right-line ml-2"></i>
+                    </a>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="bg-white p-8 rounded-lg shadow-sm border border-gray-100 service-card transition-all duration-300">
+                    <div class="w-14 h-14 bg-blue-50 rounded-lg flex items-center justify-center mb-6">
+                        <i class="ri-cloud-line ri-xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Cloud Computing Services</h3>
+                    <p class="text-gray-600 mb-4">
+                        Secure and scalable cloud solutions that enhance flexibility, reduce costs, and improve collaboration.
+                    </p>
+                    <a href="#" class="text-primary font-medium flex items-center">
+                        Learn More
+                        <i class="ri-arrow-right-line ml-2"></i>
+                    </a>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="bg-white p-8 rounded-lg shadow-sm border border-gray-100 service-card transition-all duration-300">
+                    <div class="w-14 h-14 bg-blue-50 rounded-lg flex items-center justify-center mb-6">
+                        <i class="ri-shield-check-line ri-xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Cybersecurity Solutions</h3>
+                    <p class="text-gray-600 mb-4">
+                        Comprehensive security measures to protect your valuable data and systems from evolving cyber threats.
+                    </p>
+                    <a href="#" class="text-primary font-medium flex items-center">
+                        Learn More
+                        <i class="ri-arrow-right-line ml-2"></i>
+                    </a>
+                </div>
+                
+                <!-- Service 4 -->
+                <div class="bg-white p-8 rounded-lg shadow-sm border border-gray-100 service-card transition-all duration-300">
+                    <div class="w-14 h-14 bg-blue-50 rounded-lg flex items-center justify-center mb-6">
+                        <i class="ri-database-2-line ri-xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Data Analytics & BI</h3>
+                    <p class="text-gray-600 mb-4">
+                        Transform raw data into actionable insights that drive informed decision-making and business growth.
+                    </p>
+                    <a href="#" class="text-primary font-medium flex items-center">
+                        Learn More
+                        <i class="ri-arrow-right-line ml-2"></i>
+                    </a>
+                </div>
+                
+                <!-- Service 5 -->
+                <div class="bg-white p-8 rounded-lg shadow-sm border border-gray-100 service-card transition-all duration-300">
+                    <div class="w-14 h-14 bg-blue-50 rounded-lg flex items-center justify-center mb-6">
+                        <i class="ri-smartphone-line ri-xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Mobile App Development</h3>
+                    <p class="text-gray-600 mb-4">
+                        User-centric mobile applications that enhance customer engagement and extend your digital presence.
+                    </p>
+                    <a href="#" class="text-primary font-medium flex items-center">
+                        Learn More
+                        <i class="ri-arrow-right-line ml-2"></i>
+                    </a>
+                </div>
+                
+                <!-- Service 6 -->
+                <div class="bg-white p-8 rounded-lg shadow-sm border border-gray-100 service-card transition-all duration-300">
+                    <div class="w-14 h-14 bg-blue-50 rounded-lg flex items-center justify-center mb-6">
+                        <i class="ri-ai-generate ri-xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">AI & Machine Learning</h3>
+                    <p class="text-gray-600 mb-4">
+                        Intelligent solutions that automate processes, predict trends, and create personalized experiences.
+                    </p>
+                    <a href="#" class="text-primary font-medium flex items-center">
+                        Learn More
+                        <i class="ri-arrow-right-line ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <div class="lg:w-1/2">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Who We Are</h2>
+                    <p class="text-gray-600 mb-6">
+                        Founded in 2025, Thrice has been at the forefront of digital innovation, helping businesses of all sizes navigate the complexities of technology and harness its power for sustainable growth.
+                    </p>
+                    <p class="text-gray-600 mb-6">
+                        Our team of experienced professionals combines technical expertise with business acumen to deliver solutions that not only solve immediate challenges but also position our clients for future success in an increasingly digital world.
+                    </p>
+                    <p class="text-gray-600 mb-8">
+                        At Thrice, we believe that technology should serve people, not the other way around. This human-centered approach guides everything we do, from initial consultation to final implementation and ongoing support.
+                    </p>
+                    <button class="bg-primary text-white px-8 py-3 !rounded-button whitespace-nowrap font-medium hover:bg-opacity-90 transition-colors">
+                        Learn More About Us
+                    </button>
+                </div>
+                
+                <div class="lg:w-1/2 grid grid-cols-2 gap-6">
+                    <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+                        <div class="text-4xl font-bold text-primary mb-2">10+</div>
+                        <p class="text-gray-600">Successful Projects</p>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+                        <div class="text-4xl font-bold text-primary mb-2">10+</div>
+                        <p class="text-gray-600">Tech Experts</p>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+                        <div class="text-4xl font-bold text-primary mb-2">1+</div>
+                        <p class="text-gray-600">Years Experience</p>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+                        <div class="text-4xl font-bold text-primary mb-2">98%</div>
+                        <p class="text-gray-600">Client Satisfaction</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Team Section -->
+            <div class="mt-20">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-900 mb-4">Our Team</h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto">
+                        At the heart of our company is a passionate team of innovators, developers, and creative thinkers dedicated to turning ideas into reality. We come from diverse backgrounds in software engineering, design, and business strategy, but we share one common goal: to build technology that makes life simpler and smarter.
+
+                        From crafting intuitive apps to designing robust enterprise solutions, our team thrives on collaboration, creativity, and continuous learning. We believe in open communication, agile development, and keeping our clients at the center of everything we do.
+                        
+                        Together, we're more than just a tech team — we're partners in your digital journey.
+                    </p>
+                </div>
+                
+               
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Portfolio</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    Explore our successful projects and see how we've helped businesses across various industries achieve their digital transformation goals.
+                </p>
+            </div>
+            
+            <div class="flex flex-wrap justify-center mb-10">
+                <div class="flex bg-white rounded-full p-1 shadow-sm">
+                    <button class="px-6 py-2 rounded-full bg-primary text-white whitespace-nowrap">All Projects</button>
+                    <button class="px-6 py-2 rounded-full text-gray-700 hover:bg-gray-100 whitespace-nowrap">Web Development</button>
+                    <button class="px-6 py-2 rounded-full text-gray-700 hover:bg-gray-100 whitespace-nowrap">Mobile Apps</button>
+                    <button class="px-6 py-2 rounded-full text-gray-700 hover:bg-gray-100 whitespace-nowrap">Cloud Solutions</button>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-sm border border-gray-100">
+                    <div class="h-56 bg-gray-200" style="background-image: url('https://readdy.ai/api/search-image?query=modern%20e-commerce%20website%20interface%20on%20multiple%20devices%2C%20showcasing%20responsive%20design%20with%20clean%20layout%2C%20product%20displays%2C%20and%20shopping%20cart%20functionality%2C%20professional%20e-commerce%20platform%20visualization&width=600&height=400&seq=project1&orientation=landscape'); background-size: cover; background-position: center;"></div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-3">
+                            <h3 class="text-xl font-bold text-gray-900">GlobalTrade E-commerce Platform</h3>
+                            <span class="bg-blue-100 text-primary text-xs px-3 py-1 rounded-full">Web</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">
+                            A comprehensive e-commerce solution with integrated payment processing and inventory management.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-gray-100 text-gray-600 text-xs px-3 py-1 rounded-full">React</span>
+                            <span class="bg-gray-100 text-gray-600 text-xs px-3 py-1 rounded-full">Node.js</span>
+                            <span class="bg-gray-100 text-gray-600 text-xs px-3 py-1 rounded-full">MongoDB</span>
+                        </div>
+                        <a href="#" class="text-primary font-medium flex items-center">
+                            View Case Study
+                            <i class="ri-arrow-right-line ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-sm border border-gray-100">
+                    <div class="h-56 bg-gray-200" style="background-image: url('kirana-banner.webp'); background-size: cover; background-position: center;"></div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-3">
+                            <h3 class="text-xl font-bold text-gray-900">Friendly Store Manager</h3>
+                            <span class="bg-blue-100 text-primary text-xs px-3 py-1 rounded-full">Mobile</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">
+                            A secure mobile banking application with biometric authentication and real-time transaction alerts.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-gray-100 text-gray-600 text-xs px-3 py-1 rounded-full">Flutter</span>
+                            <span class="bg-gray-100 text-gray-600 text-xs px-3 py-1 rounded-full">Firebase</span>
+                            <span class="bg-gray-100 text-gray-600 text-xs px-3 py-1 rounded-full">Java</span>
+                        </div>
+                        <a href="#" class="text-primary font-medium flex items-center">
+                            View Case Study
+                            <i class="ri-arrow-right-line ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-sm border border-gray-100">
+                    <div class="h-56 bg-gray-200" style="background-image: url('https://readdy.ai/api/search-image?query=cloud%20infrastructure%20management%20dashboard%20showing%20server%20status%2C%20resource%20allocation%2C%20and%20performance%20metrics%2C%20professional%20cloud%20computing%20visualization%20with%20monitoring%20graphs%20and%20control%20panels&width=600&height=400&seq=project3&orientation=landscape'); background-size: cover; background-position: center;"></div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-3">
+                            <h3 class="text-xl font-bold text-gray-900">CloudOps Management System</h3>
+                            <span class="bg-blue-100 text-primary text-xs px-3 py-1 rounded-full">Cloud</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">
+                            A cloud infrastructure management platform that optimizes resource allocation and reduces costs.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-gray-100 text-gray-600 text-xs px-3 py-1 rounded-full">AWS</span>
+                            <span class="bg-gray-100 text-gray-600 text-xs px-3 py-1 rounded-full">Python</span>
+                            <span class="bg-gray-100 text-gray-600 text-xs px-3 py-1 rounded-full">Terraform</span>
+                        </div>
+                        <a href="#" class="text-primary font-medium flex items-center">
+                            View Case Study
+                            <i class="ri-arrow-right-line ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <button class="border-2 border-primary text-primary px-8 py-3 !rounded-button whitespace-nowrap font-medium hover:bg-primary hover:text-white transition-colors">
+                    View All Projects
+                </button>
+            </div>
+        </div>
+    </section>
+
+    
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row gap-12">
+                <div class="lg:w-1/2">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Get in Touch</h2>
+                    <p class="text-gray-600 mb-8">
+                        Ready to discuss your project? Fill out the form, and one of our experts will get back to you within 24 hours.
+                    </p>
+                    
+                    <form class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="name" class="block text-gray-700 mb-2">Full Name</label>
+                                <input type="text" id="name" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary" placeholder="Your name">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-gray-700 mb-2">Email Address</label>
+                                <input type="email" id="email" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary" placeholder="Your email">
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="phone" class="block text-gray-700 mb-2">Phone Number</label>
+                                <input type="tel" id="phone" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary" placeholder="Your phone">
+                            </div>
+                            <div>
+                                <label for="company" class="block text-gray-700 mb-2">Company</label>
+                                <input type="text" id="company" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary" placeholder="Your company">
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label for="service" class="block text-gray-700 mb-2">Service Interested In</label>
+                            <div class="relative">
+                                <select id="service" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary appearance-none pr-8">
+                                    <option value="" selected disabled>Select a service</option>
+                                    <option value="software">Custom Software Development</option>
+                                    <option value="cloud">Cloud Computing Services</option>
+                                    <option value="security">Cybersecurity Solutions</option>
+                                    <option value="data">Data Analytics & BI</option>
+                                    <option value="mobile">Mobile App Development</option>
+                                    <option value="ai">AI & Machine Learning</option>
+                                </select>
+                                <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                                    <i class="ri-arrow-down-s-line text-gray-400"></i>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label for="message" class="block text-gray-700 mb-2">Project Details</label>
+                            <textarea id="message" rows="4" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary" placeholder="Tell us about your project"></textarea>
+                        </div>
+                        
+                        <div>
+                            <label class="custom-checkbox">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                <span class="ml-2 text-gray-600">I agree to the <a href="#" class="text-primary">Privacy Policy</a> and <a href="#" class="text-primary">Terms of Service</a>.</span>
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="bg-primary text-white px-8 py-3 !rounded-button whitespace-nowrap font-medium hover:bg-opacity-90 transition-colors w-full md:w-auto">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+                
+                <div class="lg:w-1/2">
+                    <div class="bg-white p-8 rounded-lg shadow-sm border border-gray-100 h-full">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-6">Contact Information</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="ri-map-pin-line text-primary"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-900 mb-1">Headquarters</h4>
+                                    <p class="text-gray-600">
+                                        Pune, Maharashtra, 414607
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="ri-phone-line text-primary"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-900 mb-1">Phone</h4>
+                                    <p class="text-gray-600">
+                                        +91 9067838909<br>
+                                        Monday - Friday, 9am - 6pm PST
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="ri-mail-line text-primary"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-900 mb-1">Email</h4>
+                                    <p class="text-gray-600">
+                                        thricetechnologies@gmail.com
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8">
+                            <h4 class="font-bold text-gray-900 mb-4">Follow Us</h4>
+                            <div class="flex space-x-4">
+                                <a href="https://www.linkedin.com/in/thrice-technologies-938a01374/" class="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors">
+                                    <i class="ri-linkedin-fill"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors">
+                                    <i class="ri-twitter-x-fill"></i>
+                                </a>
+                                <a href="https://www.instagram.com/thrice_technologies?igsh=bHRhbnpienFpNWEw" class="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors">
+                                    <i class="ri-instagram-fill"></i>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8 h-64 bg-gray-200 rounded-lg overflow-hidden">
+                            <div style="background-image: url('https://public.readdy.ai/gen_page/map_placeholder_1280x720.png'); background-size: cover; background-position: center;" class="w-full h-full"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- CTA Section -->
+    <section class="py-20 bg-primary bg-opacity-5">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Ready to Transform Your Business?</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto mb-8">
+                Partner with Thrice to leverage the latest technology solutions and drive your business forward in the digital age.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <button class="bg-primary text-white px-8 py-3 !rounded-button whitespace-nowrap font-medium hover:bg-opacity-90 transition-colors">
+                    Schedule a Consultation
+                </button>
+                <button class="border-2 border-primary text-primary px-8 py-3 !rounded-button whitespace-nowrap font-medium hover:bg-primary hover:text-white transition-colors">
+                    Learn More
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-16 pb-8">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                <div>
+                    <div class="flex items-center mb-6">
+                        <div class="mr-2">
+                            <svg width="40" height="40" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M150 100L300 250L150 400C150 400 250 300 350 200L250 100H150Z" fill="url(#paint0_linear_footer)"/>
+                                <defs>
+                                    <linearGradient id="paint0_linear_footer" x1="150" y1="100" x2="350" y2="400" gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#4B6BFB"/>
+                                        <stop offset="1" stop-color="#00B2FF"/>
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                        </div>
+                        <span class="text-2xl font-bold">Thrice</span>
+                    </div>
+                    <p class="text-gray-400 mb-6">
+                        Empowering businesses through innovative technology solutions since 2015.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center text-gray-400 hover:text-white transition-colors">
+                            <i class="ri-linkedin-fill"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center text-gray-400 hover:text-white transition-colors">
+                            <i class="ri-twitter-x-fill"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center text-gray-400 hover:text-white transition-colors">
+                            <i class="ri-facebook-fill"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center text-gray-400 hover:text-white transition-colors">
+                            <i class="ri-instagram-fill"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-6">Quick Links</h3>
+                    <ul class="space-y-4">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Home</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition-colors">Services</a></li>
+                        <li><a href="#portfolio" class="text-gray-400 hover:text-white transition-colors">Portfolio</a></li>
+                        <li><a href="#careers" class="text-gray-400 hover:text-white transition-colors">Careers</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-6">Services</h3>
+                    <ul class="space-y-4">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Custom Software Development</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Cloud Computing Services</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Cybersecurity Solutions</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Data Analytics & BI</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Mobile App Development</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">AI & Machine Learning</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-6">Newsletter</h3>
+                    <p class="text-gray-400 mb-4">
+                        Subscribe to our newsletter to receive updates on the latest tech trends and company news.
+                    </p>
+                    <form class="space-y-4">
+                        <div class="flex">
+                            <input type="email" class="w-full px-4 py-3 rounded-l-lg border-none focus:outline-none text-gray-900" placeholder="Your email address">
+                            <button type="submit" class="bg-primary px-4 py-3 rounded-r-lg text-white whitespace-nowrap">
+                                Subscribe
+                            </button>
+                        </div>
+                        <label class="custom-checkbox">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            <span class="ml-2 text-gray-400 text-sm">I agree to receive marketing emails from Thrice.</span>
+                        </label>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm mb-4 md:mb-0">
+                    © 2025 Thrice Technologies. All rights reserved.
+                </p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors text-sm">Privacy Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors text-sm">Terms of Service</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors text-sm">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script id="navbarScript">
+        document.addEventListener('DOMContentLoaded', function() {
+            const header = document.querySelector('header');
+            
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    header.classList.add('shadow-md');
+                } else {
+                    header.classList.remove('shadow-md');
+                }
+            });
+        });
+    </script>
+
+    <script id="smoothScrollScript">
+        document.addEventListener('DOMContentLoaded', function() {
+            const links = document.querySelectorAll('a[href^="#"]');
+            
+            for (const link of links) {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            }
+        });
+    </script>
+
+    <script id="formValidationScript">
+        document.addEventListener('DOMContentLoaded', function() {
+            const contactForm = document.querySelector('#contact form');
+            
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Basic validation
+                    const name = document.getElementById('name');
+                    const email = document.getElementById('email');
+                    const message = document.getElementById('message');
+                    
+                    let isValid = true;
+                    
+                    if (!name.value.trim()) {
+                        name.classList.add('border-red-500');
+                        isValid = false;
+                    } else {
+                        name.classList.remove('border-red-500');
+                    }
+                    
+                    if (!email.value.trim() || !email.value.includes('@')) {
+                        email.classList.add('border-red-500');
+                        isValid = false;
+                    } else {
+                        email.classList.remove('border-red-500');
+                    }
+                    
+                    if (!message.value.trim()) {
+                        message.classList.add('border-red-500');
+                        isValid = false;
+                    } else {
+                        message.classList.remove('border-red-500');
+                    }
+                    
+                    if (isValid) {
+                        // Form submission logic would go here
+                        alert('Thank you for your message! We will get back to you soon.');
+                        contactForm.reset();
+                    }
+                });
+            }
+        });
+    </script>
+
+    <script id="customCheckboxScript">
+        document.addEventListener('DOMContentLoaded', function() {
+            const checkboxes = document.querySelectorAll('.custom-checkbox input[type="checkbox"]');
+            
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    const checkmark = this.nextElementSibling;
+                    if (this.checked) {
+                        checkmark.style.backgroundColor = '#4B6BFB';
+                        checkmark.style.borderColor = '#4B6BFB';
+                    } else {
+                        checkmark.style.backgroundColor = '#fff';
+                        checkmark.style.borderColor = '#e5e7eb';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
