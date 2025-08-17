@@ -98,7 +98,7 @@
                             </defs>
                         </svg>
                     </div>
-                    <img src="ThriceLogo.png" alt="Company Logo" width="75" height="auto">
+                    <img src="images/ThriceLogo.png" alt="Company Logo" width="75" height="auto">
 
                 </div>
                 
@@ -452,12 +452,12 @@
                             <div class="relative">
                                 <select id="service" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary appearance-none pr-8">
                                     <option value="" selected disabled>Select a service</option>
-                                    <option value="software">Custom Software Development</option>
-                                    <option value="cloud">Cloud Computing Services</option>
-                                    <option value="security">Cybersecurity Solutions</option>
-                                    <option value="data">Data Analytics & BI</option>
-                                    <option value="mobile">Mobile App Development</option>
-                                    <option value="ai">AI & Machine Learning</option>
+                                    <option value="Custom Software Development">Custom Software Development</option>
+                                    <option value="Cloud Computing Services">Cloud Computing Services</option>
+                                    <option value="Cybersecurity Solutions">Cybersecurity Solutions</option>
+                                    <option value="Data Analytics & BI">Data Analytics & BI</option>
+                                    <option value="Mobile App Development">Mobile App Development</option>
+                                    <option value="AI & Machine Learning">AI & Machine Learning</option>
                                 </select>
                                 <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
                                     <i class="ri-arrow-down-s-line text-gray-400"></i>
@@ -478,7 +478,7 @@
                             </label>
                         </div>
                         
-                        <button type="submit" class="bg-primary text-white px-8 py-3 !rounded-button whitespace-nowrap font-medium hover:bg-opacity-90 transition-colors w-full md:w-auto">
+                        <button type="submit" class="bg-primary text-white px-8 py-3 !rounded-button whitespace-nowrap font-medium hover:bg-opacity-90 transition-colors w-full md:w-auto", onclick="sendMessage()">
                             Send Message
                         </button>
                     </form>
@@ -765,5 +765,57 @@
             });
         });
     </script>
+   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+   <script>
+     (function () {
+       emailjs.init("hHE7I67yL8jio0Mb3"); // Replace with your actual EmailJS public key
+     })();
+   
+     function sendMessage() {
+       const name = document.getElementById("name").value.trim();
+       const email = document.getElementById("email").value.trim();
+       const phone = document.getElementById("phone").value.trim();
+       const service = document.getElementById("service").value;
+   
+       if (!name || !email || !phone || !service) {
+         alert("❗ Please fill out all fields.");
+         return;
+       }
+   
+       // 1️⃣ Send confirmation email to user
+       const userParams = {
+         to_email: email,
+         user_name: name,
+         selected_service: service,
+       };
+   
+       emailjs.send("service_7lgwoaa", "template_68v77om", userParams)
+         .then(() => {
+           console.log("User email sent ✅");
+         })
+         .catch((err) => {
+           console.error("Failed to send user email ❌", err);
+         });
+   
+       // 2️⃣ Send notification to you (admin)
+       const adminParams = {
+         admin_email: "shubhamdhere.03@gmail.com",
+         name: name,
+         email: email,
+         phone: phone,
+         service: service,
+       };
+   
+       emailjs.send("service_7lgwoaa", "template_1ba8v4l", adminParams)
+         .then(() => {
+           alert("✅ Message sent successfully!");
+         })
+         .catch((err) => {
+           alert("❌ Failed to send message.");
+           console.error(err);
+         });
+     }
+   </script>
+   
 </body>
 </html>
