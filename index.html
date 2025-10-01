@@ -424,7 +424,7 @@
                         Ready to discuss your project? Fill out the form, and one of our experts will get back to you within 24 hours.
                     </p>
                     
-                    <form class="space-y-6">
+                    <!--<form class="space-y-6">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
                                 <label for="name" class="block text-gray-700 mb-2">Full Name</label>
@@ -476,10 +476,10 @@
                                 <span class="checkmark"></span>
                                 <span class="ml-2 text-gray-600">I agree to the <a href="#" class="text-primary">Privacy Policy</a> and <a href="#" class="text-primary">Terms of Service</a>.</span>
                             </label>
-                        </div>
+                        </div>-->
                         
                         <button type="submit" class="bg-primary text-white px-8 py-3 !rounded-button whitespace-nowrap font-medium hover:bg-opacity-90 transition-colors w-full md:w-auto", onclick="sendMessage()">
-                            Send Message
+                            Contact Us
                         </button>
                     </form>
                 </div>
@@ -767,12 +767,12 @@
     </script>
    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
    <script>
-     (function () {
+     /*(function () {
        emailjs.init("hHE7I67yL8jio0Mb3"); // Replace with your actual EmailJS public key
-     })();
+     })();*/
    
      function sendMessage() {
-       const name = document.getElementById("name").value.trim();
+       /*const name = document.getElementById("name").value.trim();
        const email = document.getElementById("email").value.trim();
        const phone = document.getElementById("phone").value.trim();
        const service = document.getElementById("service").value;
@@ -813,8 +813,9 @@
          .catch((err) => {
            alert("❌ Failed to send message.");
            console.error(err);
-         });
-     }
+         });*/
+     window.open("https://docs.google.com/forms/d/e/1FAIpQLSfsm0X8f1rVzqNHJvPSnGIG9Uh6POUAXOAZcCuNiv26R5CtIQ/viewform", "contact form");
+    }
    </script>
    
 </body>
